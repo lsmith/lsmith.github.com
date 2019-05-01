@@ -1,0 +1,245 @@
+/** General styles **/
+:root {
+    --shadow: rgba(0,0,0,.25);
+
+    margin: 0;
+}
+
+body {
+    font-family: palatino, sans-serif;
+    font-size: 10px;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 7.5in;
+}
+
+section {
+    border-bottom: 1px solid var(--shadow);
+    overflow: hidden;
+    padding: 24px 24px 24px 0;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin: 0;
+}
+
+h2 {
+    flex-basis: 72px; /* for brief and experience sections */
+    font-size: 14px;
+    font-weight: 100;
+    justify-self: center;
+    letter-spacing: 2px;
+    line-height: 2;
+    line-height: 72px;
+    margin: 12px 0 0;
+    text-transform: uppercase;
+    writing-mode: tb; /* deprecated, but wider support */
+    writing-mode: vertical-lr;
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: 100;
+    margin: 0;
+    white-space: nowrap;
+}
+
+h4 {
+    display: inline;
+    font-weight: 600;
+    margin: 0 6px 0 0;
+    text-transform: capitalize;
+}
+
+h4::after {
+    content: ': ';
+}
+
+summary {
+    font-size: 12px;
+    font-weight: 600;
+    list-style: none;
+}
+summary::-webkit-details-marker {
+    display: none;
+}
+
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: disc;
+    margin: 12px 0 24px;
+    padding-left: 24px;
+}
+
+address {
+    font-style: normal;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.inline {
+    display: inline;
+    list-style: none;
+    padding-left: 0;
+}
+
+.inline::after {
+    content: '';
+    display: block;
+    margin-bottom: 12px;
+}
+
+.inline > li {
+    display: inline;
+}
+
+.inline > li:not(:last-of-type)::after {
+    content: ',';
+}
+
+
+/** Grids **/
+#experience ol > li {
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    grid-template-areas:
+        "company address duration"
+        "details details details";
+}
+#experience ol > li h3 { grid-area: company; }
+#experience ol > li address { grid-area: address; }
+#experience ol > li .duration { grid-area: duration; justify-self: end; }
+#experience ol > li details { grid-area: details; }
+
+/** Header styles **/
+header {
+    border-bottom: 1px solid var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 24px 0 12px;
+}
+
+header h1,
+header address {
+    order: 1;
+    width: 100%;
+}
+header .email   { order: 2; }
+header .tel     { order: 3; }
+
+header address {
+    margin: 0;
+    font-size: 12px;
+}
+
+header a {
+    font-family: sans-serif;
+    font-size: 11px;
+    line-height: 48px;
+    order: 4;
+    position: relative;
+    text-decoration: none;
+}
+header a::after {
+    content: attr(href);
+    padding-left: 24px;
+}
+
+header svg {
+    border: 3px solid transparent;
+    fill: rgba(0,0,0,0.05);
+    height: 48px;
+    left: -6px;
+    position: absolute;
+    top: -3px;
+    vertical-align: top;
+    width: 48px;
+}
+
+header .github,
+header .twitter,
+header .tel {
+    justify-self: end;
+}
+
+/** Brief styles **/
+#brief {
+    display: flex;
+}
+
+#brief p {
+    flex-grow: 1;
+}
+
+/** Experience styles **/
+#experience {
+    display: flex;
+}
+
+#experience a::after {
+    content: ' <' attr(href) '>';
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
+#experience h3 a {
+    display: block;
+    font-weight: 600;
+    margin-right: 12px;
+}
+#experience h3 a::after {
+    font-size: 12px;
+}
+
+#experience ol {
+    flex-grow: 1;
+}
+
+#experience address {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#experience .duration {
+    font-size: 12px;
+    margin-left: 0 0 0 24px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+#experience ol > li + li {
+    margin-top: 12px;
+}
+
+#experience ol > li:nth-of-type(4) {
+    page-break-before: always;
+}
+
+/** Interests styles **/
+#interests {
+    display: grid;
+    grid-template-columns: 72px auto;
+    grid-template-areas:
+        "sidebar content1"
+        "sidebar content2";
+}
+#interests h2 { grid-area: sidebar; }
+#interests p:nth-of-type(1) { grid-area: content1; }
+#interests p:nth-of-type(2) { grid-area: content2; }
+#interests p {
+    margin-bottom: 0;
+}

@@ -1,0 +1,300 @@
+/* General styles */
+:root {
+    --strong-accent: #294149;
+    --light-accent: #a5c7d2;
+    --body: #fff;
+    --text: #e3eef2;
+    --shadow: rgba(0,0,0,.25);
+
+    background: var(--body);
+    margin: 0;
+}
+
+body {
+    font-family: palatino, sans-serif;
+    font-size: 14px;
+    line-height: 2;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+section {
+    border-bottom: 1px solid var(--shadow);
+    overflow: hidden;
+    padding: 24px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-weight: 100;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 0;
+    color: var(--strong-accent);
+    line-height: 2;
+    letter-spacing: 2px;
+}
+
+h3 {
+    margin: 0;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+h4 {
+    text-transform: capitalize;
+    font-weight: 600;
+    display: inline;
+    margin: 0 6px 0 0;
+}
+
+h4::after {
+    content: ': ';
+}
+
+.duration {
+    margin: 0;
+}
+
+summary {
+    font-size: 14px;
+    font-weight: 600;
+}
+summary::-webkit-details-marker {
+    margin-right: 6px;
+}
+
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding-left: 24px;
+    list-style: disc;
+    margin: 12px 0 24px;
+}
+
+address {
+    font-style: normal;
+}
+
+a {
+    color: var(--strong-accent);
+}
+
+.inline {
+    display: inline;
+    list-style: none;
+    padding-left: 0;
+}
+
+.inline::after {
+    content: '';
+    display: block;
+    margin-bottom: 12px;
+}
+
+.inline > li {
+    display: inline;
+}
+
+.inline > li:not(:last-of-type)::after {
+    content: ',';
+}
+
+/** Header styles **/
+header {
+    display: grid;
+    grid-template-columns: 48px 48px 48px auto;
+    grid-template-areas:
+        "title title title title"
+        "address address address address"
+        "github twitter phone email";
+    align-items: end;
+}
+header h1       { grid-area: title; }
+header address  { grid-area: address; }
+header .github  { grid-area: github; }
+header .twitter { grid-area: twitter; }
+header .tel     { grid-area: phone; }
+header .email   { grid-area: email; }
+
+header {
+    background-color: var(--strong-accent);
+    padding: 24px;
+    color: var(--text);
+}
+
+header svg {
+    fill: currentColor;
+    height: 18px;
+    width: 18px;
+    border: 3px solid transparent;
+    vertical-align: bottom;
+}
+header a {
+    color: var(--text);
+}
+header a:hover {
+    color: var(--light-accent);
+}
+header a:hover svg {
+    fill: var(--light-accent);
+}
+
+header address {
+    margin: 0;
+    font-size: 12px;
+}
+
+/** Experience styles **/
+#experience ol > li {
+    display: grid;
+    grid-template-columns: auto min-content;
+    grid-template-areas:
+        "company duration"
+        "address address"
+        "details details";
+    align-items: center;
+}
+#experience ol > li h3 { grid-area: company; }
+#experience ol > li address { grid-area: address; }
+#experience ol > li .duration { grid-area: duration; justify-self: end; }
+#experience ol > li details { grid-area: details; }
+
+#experience h3 a {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 12px;
+}
+#experience address {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#experience .duration {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-left: 24px;
+    white-space: nowrap;
+}
+
+#experience ol > li {
+    margin-top: 12px;
+}
+
+#experience ul:not(.inline) li + li {
+    margin-top: 12px;
+}
+
+@media screen and (min-width: 600px) {
+    header {
+        grid-template-columns: auto min-content 48px 48px;
+        grid-template-areas:
+            "title        github twitter phone"
+            "address      email email email"
+            ".            email email email";
+    }
+
+    header svg {
+        vertical-align: top;
+    }
+
+    header .github,
+    header .twitter,
+    header .tel {
+        justify-self: end;
+    }
+
+    .email {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 6px 12px;
+        margin-top: 6px;
+        text-align: center;
+        background-color: var(--text);
+        white-space: nowrap;
+        color: var(--strong-accent);
+    }
+    .email:hover {
+        background-color: var(--light-accent);
+        color: var(--strong-accent);
+    }
+    .email:hover svg {
+        fill: var(--strong-accent);
+    }
+    .email::after {
+        content: attr(aria-label);
+        margin-left: 6px;
+    }
+
+    #experience ol > li {
+        grid-template-columns: min-content auto min-content;
+        grid-template-areas:
+            "company address duration"
+            "details details details";
+        margin-top: 6px;
+    }
+
+    h3 {
+        white-space: nowrap;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    header {
+        grid-template-columns: 48px auto min-content 48px 48px;
+        grid-template-areas:
+            ". title        github twitter phone"
+            ". address      email email email"
+            ". .            email email email";
+    }
+
+    section {
+        padding-left: 0;
+    }
+
+    #brief, #experience {
+        display: flex;
+    }
+    #interests {
+        display: grid;
+        grid-template-columns: 72px auto;
+        grid-template-areas:
+            "sidebar content1"
+            "sidebar content2";
+    }
+    #interests p:nth-of-type(1) { grid-area: content1; }
+    #interests p:nth-of-type(2) { grid-area: content2; }
+    #interests p {
+        margin-bottom: 0;
+    }
+
+    #brief p,
+    #experience ol {
+        flex-grow: 1;
+    }
+
+    h2 {
+        grid-area: sidebar; /* for interests section */
+        flex-basis: 72px; /* for brief and experience sections */
+
+        line-height: 72px;
+        writing-mode: vertical-lr;
+        writing-mode: tb; /* deprecated, but wider support */
+        
+        margin-top: 18px;
+        justify-self: center;
+    }
+}
