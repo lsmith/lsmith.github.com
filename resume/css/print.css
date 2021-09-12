@@ -225,7 +225,7 @@ header .tel {
     margin-top: 12px;
 }
 
-#experience ol > li:nth-of-type(4) {
+#experience ol > li:nth-of-type(3) {
     page-break-before: always;
 }
 
