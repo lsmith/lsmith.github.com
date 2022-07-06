@@ -28,7 +28,7 @@ h1 {
 }
 
 h2 {
-    flex-basis: 72px; /* for brief and experience sections */
+    flex-basis: 72px; /* for experience section */
     font-size: 14px;
     font-weight: 100;
     justify-self: center;
@@ -176,13 +176,28 @@ header .tel {
     justify-self: end;
 }
 
-/** Brief styles **/
-#brief {
-    display: flex;
+/** Brief & Interests styles **/
+#brief,
+#interests {
+    display: grid;
+    grid-template-columns: 72px auto;
+    grid-template-areas:
+        "sidebar content1"
+        "sidebar content2";
 }
 
-#brief p {
-    flex-grow: 1;
+#brief h2,
+#interests h2 { grid-area: sidebar; }
+
+#brief p:nth-of-type(1),
+#interests p:nth-of-type(1) { grid-area: content1; }
+
+#brief p:nth-of-type(2),
+#interests p:nth-of-type(2) { grid-area: content2; }
+
+#brief p,
+#interests p {
+    margin-bottom: 0;
 }
 
 /** Experience styles **/
@@ -227,19 +242,4 @@ header .tel {
 
 #experience ol > li:nth-of-type(3) {
     page-break-before: always;
-}
-
-/** Interests styles **/
-#interests {
-    display: grid;
-    grid-template-columns: 72px auto;
-    grid-template-areas:
-        "sidebar content1"
-        "sidebar content2";
-}
-#interests h2 { grid-area: sidebar; }
-#interests p:nth-of-type(1) { grid-area: content1; }
-#interests p:nth-of-type(2) { grid-area: content2; }
-#interests p {
-    margin-bottom: 0;
 }
